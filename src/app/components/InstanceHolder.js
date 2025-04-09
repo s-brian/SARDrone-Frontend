@@ -1,5 +1,6 @@
 "use client";
 import InstanceCard from "./InstanceCard";
+import { motion } from "framer-motion"  // Import motion from framer-motion
 
  
 
@@ -14,11 +15,10 @@ export default function InstanceHolder(){
 	  ];
 
 	return(
-
 		<div className="space-y-4">
-			{instances.map((instance) => (
-				<InstanceCard key={instance.id} instance={instance}/>
-			))}
+		{instances.map((instance) => (
+			<InstanceCard key={instance.id} instance={instance}/>
+		))}
 		</div>
 	)
 
