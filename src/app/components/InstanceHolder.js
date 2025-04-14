@@ -1,10 +1,29 @@
 "use client";
 import InstanceCard from "./InstanceCard";
-import { motion } from "framer-motion"  // Import motion from framer-motion
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion"  
 
  
 
 export default function InstanceHolder(){
+
+	const socketRef = useRef(null)
+
+	useEffect(() => {
+		socketRef.current = new WebSocket('ws://localhost:8080');
+
+		socketRef.current.onopen = () => {
+      console.log('WebSocket connected');
+    };
+
+    socketRef.current.onmessage = (event) => {
+      console.log('Received:', event.data);
+    };
+
+    return () => {
+      socketRef.current?.close();
+    };
+	}, [])
 
 	const instances = [
 		{ id: 1, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },

@@ -1,6 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import { Footer } from "./components/Footer";
+import { headers } from "next/headers";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,7 +15,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+
+  const pathname = await headers().get("x-next-pathname") || "";
+  const showFooter = !pathname.startsWith("/map"); 
+
   return (
     <html lang="en">
       <body
@@ -23,8 +30,9 @@ export default function RootLayout({ children }) {
           <div className="flex-grow overflow-auto">
             {children}
           </div>
+          {showFooter && <Footer />}
         </div>
       </body>
-    </html>
+    </html> 
   );
 }
