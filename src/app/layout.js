@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 
 export default async function RootLayout({ children }) {
 
-  const pathname = await headers().get("x-next-pathname") || "";
-  const showFooter = !pathname.startsWith("/map"); 
+  // const pathname = await headers().get("x-next-pathname") || "";
+  // const showFooter = !pathname.startsWith("/map"); 
 
   return (
     <html lang="en">
@@ -30,7 +30,7 @@ export default async function RootLayout({ children }) {
           <div className="flex-grow overflow-auto">
             {children}
           </div>
-          {showFooter && <Footer />}
+          {/* {showFooter && <Footer />} */}
         </div>
       </body>
     </html> 
