@@ -6,8 +6,8 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <AnimatedText
-          title="Title"
-          description="Description"
+          title="i changed this :P"
+          description="this is what i want to put here mercy200"
           imageUrl="/placeholder.svg?height=600&width=800"
           imageAlt="Drone illustration"
           imagePosition="right"
