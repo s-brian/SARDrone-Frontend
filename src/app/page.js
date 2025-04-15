@@ -1,7 +1,34 @@
 import Image from "next/image";
+import AnimatedText from "./components/AnimatedText";
 
 export default function Home() {
   return (
-    <div>This is the home page.</div>
-  );
+    <main className="min-h-screen bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <AnimatedText
+          title="Title"
+          description="Description"
+          imageUrl="/placeholder.svg?height=600&width=800"
+          imageAlt="Drone illustration"
+          imagePosition="right"
+        />
+
+        <AnimatedText
+          title="Title"
+          description="Description"
+          imageUrl="/placeholder.svg?height=600&width=800"
+          imageAlt="Drone illustration"
+          imagePosition="left"
+        />
+
+        <AnimatedText
+          title="Title"
+          description="Description"
+          imageUrl="/placeholder.svg?height=600&width=800"
+          imageAlt="Drone illustration"
+          imagePosition="right"
+        />
+      </div>
+    </main>
+  )
 }
