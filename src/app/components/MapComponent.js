@@ -2,10 +2,14 @@
 import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import InstanceDetailsModal from "./InstanceDetailsModal"
 
-export default function MapComponent() {
+export default function MapComponent({droneSightings}) {
   const mapRef = useRef();
   const mapContainerRef = useRef();
+
+  const [selectedInstance, setSelectedInstance] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(null)
 
   useEffect(() => {
     mapboxgl.accessToken =
@@ -13,21 +17,45 @@ export default function MapComponent() {
 
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: "mapbox://styles/mapbox/streets-v12", // You can change this style as needed
-      center: [-121.881, 37.3352], // SJSU
+      style: "mapbox://styles/mapbox/streets-v12", 
+      center: [-121.881, 37.3352], 
       zoom: 11, 
-    });
+    })
 
+
+
+    droneSightings.forEach((sighting) => {
+      const marker = new mapboxgl.Marker({color: "red"})
+        .setLngLat([sighting.location.longitude, sighting.location.latitude])
+        .addTo(mapRef.current)
+
+
+      marker.getElement().addEventListener("click", () => {
+        setSelectedInstance(sighting)
+        setIsModalOpen(true)
+      })
+    })
+
+
+  
     return () => {
-      mapRef.current.remove(); // Clean up when the component unmounts
-    };
-  }, []);
+      mapRef.current.remove(); // Clean up when component unmounts
+    }
+    }, [droneSightings])
+
 
   return (
-    <div
-      id="map-container"
-      ref={mapContainerRef}
-      className="w-full h-full" // Ensure this fills the container
-    />
+    <div className="w-full h-full relative">
+      <div
+        ref={mapContainerRef}
+        className="w-full h-full"
+      />
+
+      <InstanceDetailsModal
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        instance={selectedInstance}
+      />
+    </div>
   );
 }

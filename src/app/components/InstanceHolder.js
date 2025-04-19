@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 
  
 
-export default function InstanceHolder(){
+export default function InstanceHolder({onSetDroneSightings}){
 
 	const socketRef = useRef(null)
 
@@ -27,6 +27,7 @@ export default function InstanceHolder(){
 			}
       
     };
+	onSetDroneSightings(droneSightings)
 
     return () => {
       socketRef.current?.close();
@@ -115,6 +116,9 @@ export default function InstanceHolder(){
 	];
 	
 
+	const droneSightings = instances.filter(inst => inst.status === "detected")
+
+	
 	return(
 		<div className="h-[80vh] overflow-y-auto flex flex-col space-y-4">
 		{instances.map((instance) => (
