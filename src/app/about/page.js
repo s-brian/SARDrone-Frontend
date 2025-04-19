@@ -13,19 +13,19 @@ export default function About() {
         {
           name: "Brian Shih",
           role: "Front-End Lead",
-          image: "/download.png",
+          image: "/brian.JPG",
           bio: "10+ years of experience in UX/UI design with a focus on user-centered approaches.",
         },
         {
           name: "Aishni Balaji",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/aishni.JPG",
           bio: "Specializes in brand identity and visual storytelling across digital platforms.",
         },
         {
           name: "Mercy Kim",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/mercy.JPG",
           bio: "Creates engaging animations and interactive elements that bring designs to life.",
         },
       ],
@@ -40,31 +40,31 @@ export default function About() {
         {
           name: "Kevin Tsoi",
           role: "Back-End Lead",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/kevin.JPG",
           bio: "Full-stack developer with expertise in React, Node.js, and cloud architecture.",
         },
         {
           name: "Kyle Chu",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/kyle.JPG",
           bio: "Specializes in creating responsive, accessible user interfaces with modern frameworks.",
         },
         {
           name: "Rachel Tran",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/rachel.JPG",
           bio: "Builds secure, efficient APIs and database solutions for complex applications.",
         },
         {
           name: "Marvin Zhai",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/marvin.JPG",
           bio: "Specializes in creating responsive, accessible user interfaces with modern frameworks.",
         },
         {
           name: "Jomi Angelina Arockiasamy",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/jomi.JPG",
           bio: "Specializes in creating responsive, accessible user interfaces with modern frameworks.",
         },
       ],
@@ -79,31 +79,31 @@ export default function About() {
         {
           name: "Erik Cheng",
           role: "Electrical Lead",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/erik.JPG",
           bio: "Develops comprehensive digital strategies that drive business growth and user engagement.",
         },
         {
           name: "MJ Dilig",
           role: "Electrical Lead",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/mj.JPG",
           bio: "Conducts user research to uncover insights that inform product development decisions.",
         },
         {
           name: "Jaden Phan",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/jaden.JPG",
           bio: "Translates complex data into actionable insights to optimize digital performance.",
         },
         {
           name: "Victor Tran",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/victor.JPG",
           bio: "Translates complex data into actionable insights to optimize digital performance.",
         },
         {
           name: "Darrius Robertson",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/darrius.JPG",
           bio: "Translates complex data into actionable insights to optimize digital performance.",
         },
       ],
@@ -118,37 +118,37 @@ export default function About() {
         {
           name: "Vivek Bhakta",
           role: "CAD Lead",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/vivek.JPG",
           bio: "Creates integrated marketing campaigns that build brand awareness and drive conversions.",
         },
         {
           name: "Kayla Nguyen",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/kayla.JPG",
           bio: "Develops content strategies that engage users and support business objectives.",
         },
         {
           name: "Stephannie Jimenez Tejeda",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/stephannie.JPG",
           bio: "Builds community and drives engagement through strategic social media initiatives.",
         },
         {
           name: "Olivia Huerta",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/olivia.JPG",
           bio: "Develops content strategies that engage users and support business objectives.",
         },
         {
           name: "Logan Gee",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/logan.JPG",
           bio: "Builds community and drives engagement through strategic social media initiatives.",
         },
         {
           name: "Yenyi Chen",
           role: "Team Member",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/yenyi.JPG",
           bio: "Builds community and drives engagement through strategic social media initiatives.",
         },
       ],
@@ -161,8 +161,8 @@ export default function About() {
         {/* Header Section */}
         <div className="text-center mb-20">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight text-gray-900 relative inline-block">
-            <span className="text-red-500">Our </span>
-            Team
+            <span className="text-red-500">About </span>
+            Us
           </h1>
           <p className="max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed">
             We are a diverse group of passionate individuals who combine expertise, creativity, and dedication to deliver
