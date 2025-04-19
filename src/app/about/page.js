@@ -8,12 +8,12 @@ export default function About() {
       name: "Front-End Team",
       description:
         "Our creative visionaries who transform concepts into stunning visual experiences. They blend aesthetics with functionality to create designs that captivate and engage.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/file.svg",
       members: [
         {
           name: "Brian Shih",
           role: "Front-End Lead",
-          image: "/placeholder.svg?height=400&width=400",
+          image: "/download.png",
           bio: "10+ years of experience in UX/UI design with a focus on user-centered approaches.",
         },
         {
