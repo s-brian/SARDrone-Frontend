@@ -8,7 +8,7 @@ export default function About() {
       name: "Front-End Team",
       description:
         "Our creative visionaries who transform concepts into stunning visual experiences. They blend aesthetics with functionality to create designs that captivate and engage.",
-      image: "/file.svg",
+      image: "/frontend.jpg",
       members: [
         {
           name: "Brian Shih",
@@ -35,7 +35,7 @@ export default function About() {
       name: "Back-End Team",
       description:
         "Our technical experts who build robust, scalable solutions using cutting-edge technologies. They turn designs into functional, high-performance digital products.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/backend.jpg",
       members: [
         {
           name: "Kevin Tsoi",
@@ -74,7 +74,7 @@ export default function About() {
       name: "Electrical Team",
       description:
         "Our strategic thinkers who align digital solutions with business objectives. They analyze market trends and user needs to guide project direction.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/electrical.jpg",
       members: [
         {
           name: "Erik Cheng",
@@ -113,7 +113,7 @@ export default function About() {
       name: "CAD Team",
       description:
         "Our marketing specialists who amplify brand presence and drive user acquisition. They craft compelling narratives that resonate with target audiences.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/cad.jpg",
       members: [
         {
           name: "Vivek Bhakta",
@@ -156,6 +156,7 @@ export default function About() {
   ]
 
   return (
+    
     <main className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         {/* Header Section */}
