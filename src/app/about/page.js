@@ -1,4 +1,4 @@
-import TeamSection from "../components/TeamSection"
+import TeamSection from "../components/TeamSection";
 
 export default function About() {
   // Team data
@@ -153,29 +153,42 @@ export default function About() {
         },
       ],
     },
-  ]
+  ];
 
   return (
-    
-    <main className="min-h-screen bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        {/* Header Section */}
-        <div className="text-center mb-20">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight text-gray-900 relative inline-block">
-            <span className="text-red-500">About </span>
-            Us
-          </h1>
-          <p className="max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed">
-            We are a diverse group of passionate individuals who combine expertise, creativity, and dedication to deliver
-            exceptional digital experiences that exceed expectations.
-          </p>
-        </div>
+    <>
+      <main className="min-h-screen bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          {/* Header Section */}
+          <div className="text-center mb-20">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight text-gray-900 relative inline-block">
+              <span className="text-red-500">About </span>
+              Us
+            </h1>
+            <p className="max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed">
+              We are a diverse group of passionate individuals who combine expertise, creativity, and dedication to deliver exceptional digital experiences that exceed expectations.
+            </p>
+          </div>
 
-        {/* Team Sections */}
-        {teams.map((team, index) => (
-          <TeamSection key={team.id} team={team} imagePosition={index % 2 === 0 ? "right" : "left"} />
-        ))}
-      </div>
-    </main>
-  )
+          {/* Team Sections */}
+          {teams.map((team, index) => (
+            <TeamSection key={team.id} team={team} imagePosition={index % 2 === 0 ? "right" : "left"} />
+          ))}
+        </div>
+      </main>
+
+      <footer className="w-full py-4 px-6 border-t border-gray-800">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm">
+            &copy; {new Date().getFullYear()} MERIT+ Drone Systems. All rights reserved.
+          </p>
+          <div className="flex space-x-4 mt-4 md:mt-0">
+            <a href="#" className="text-gray-400 hover:text-red-500 transition-colors">Privacy Policy</a>
+            <a href="#" className="text-gray-400 hover:text-red-500 transition-colors">Terms of Service</a>
+            <a href="#" className="text-gray-400 hover:text-red-500 transition-colors">Support</a>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
 }
