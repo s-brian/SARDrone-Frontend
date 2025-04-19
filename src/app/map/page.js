@@ -3,8 +3,7 @@ import InstanceHolder from "../components/InstanceHolder";
 import MapComponent from "../components/MapComponent"
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
-import { useState } from "react"
-
+import { useState } from "react";
 
 export default function Map() {
 

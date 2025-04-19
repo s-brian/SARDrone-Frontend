@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import InstanceDetailsModal from "./InstanceDetailsModal"
+import { useState } from "react";
 
 export default function MapComponent({droneSightings}) {
   const mapRef = useRef();
