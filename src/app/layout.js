@@ -25,8 +25,8 @@ export default async function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex flex-col h-screen">
-          <Navbar />
+        <div className="flex flex-col ">
+          {/* <Navbar /> */}
           <div className="flex-grow overflow-auto">
             {children}
           </div>

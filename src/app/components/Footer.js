@@ -5,7 +5,7 @@ import { Github, Instagram, Mail } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="border-t py-6 md:py-0 bg-black text-white">
+    <footer className="mx-auto border-t py-6 md:py-0 bg-black text-white">
       <div className="container flex flex-col items-start justify-between gap-4 md:h-24 md:flex-row md:items-center">
         <div className="flex flex-col items-start gap-2 pl-8">
           <p className="text-sm text-gray-400">Connect with us</p>

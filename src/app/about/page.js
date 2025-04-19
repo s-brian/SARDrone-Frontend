@@ -1,6 +1,7 @@
 import TeamSection from "../components/TeamSection"
 
 export default function About() {
+  // Team data
   const teams = [
     {
       id: "design",
@@ -122,7 +123,7 @@ export default function About() {
             Team
           </h1>
           <p className="max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed">
-            We're a diverse group of passionate individuals who combine expertise, creativity, and dedication to deliver
+            We are a diverse group of passionate individuals who combine expertise, creativity, and dedication to deliver
             exceptional digital experiences that exceed expectations.
           </p>
         </div>

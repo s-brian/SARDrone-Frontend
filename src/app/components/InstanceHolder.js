@@ -10,14 +10,22 @@ export default function InstanceHolder(){
 	const socketRef = useRef(null)
 
 	useEffect(() => {
-		socketRef.current = new WebSocket('ws://localhost:8080');
+		let droneId = 1
+		const wsurl = `wss://api.meritdrone.site/drone/ws/${droneId}`;
+		socketRef.current = new WebSocket(wsurl);
 
 		socketRef.current.onopen = () => {
-      console.log('WebSocket connected');
+      console.log('WebSocket connected to drone');
     };
 
     socketRef.current.onmessage = (event) => {
-      console.log('Received:', event.data);
+			try{
+				const data = JSON.parse(event.data)
+				console.log('Drone data: ', data)
+			} catch (err){
+				console.log('Invalid JSON from websocket: ', event.data)
+			}
+      
     };
 
     return () => {
@@ -26,32 +34,91 @@ export default function InstanceHolder(){
 	}, [])
 
 	const instances = [
-		{ id: 1, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 2, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 3, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 4, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 5, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 6, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 7, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 8, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 9, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 10, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 11, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 12, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 13, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 14, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 15, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 16, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 17, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 18, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 19, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-		{ id: 20, date: "3/12/2025", time: "09:00:00 PM", coords: "37N 121W", detected: false, description: "a man standing in an empty field" },
-	  ];
+		{
+			location: {
+				latitude: 37.3352,
+				longitude: -121.8811,
+				altitude: 150
+			},
+			timestamp: 1710284400000,
+			status: "detected",
+			image: "image1.jpg",
+			text: "Person detected near the Student Union",
+			score: 0.95,
+			bounding_boxes: [[120, 80, 300, 400]]
+		},
+		{
+			location: {
+				latitude: 37.3360,
+				longitude: -121.8805,
+				altitude: 160
+			},
+			timestamp: 1710285300000,
+			status: "undetected",
+			image: "image2.jpg",
+			text: "No movement detected near engineering building",
+			score: 0.12,
+			bounding_boxes: []
+		},
+		{
+			location: {
+				latitude: 37.3345,
+				longitude: -121.8820,
+				altitude: 155
+			},
+			timestamp: 1710286200000,
+			status: "detected",
+			image: "image3.jpg",
+			text: "Suspicious figure detected behind MLK Library",
+			score: 0.83,
+			bounding_boxes: [[200, 150, 350, 500]]
+		},
+		{
+			location: {
+				latitude: 37.3358,
+				longitude: -121.8818,
+				altitude: 145
+			},
+			timestamp: 1710287100000,
+			status: "detected",
+			image: "image4.jpg",
+			text: "Two heat signatures walking toward fountain",
+			score: 0.91,
+			bounding_boxes: [[100, 100, 200, 300], [300, 120, 400, 310]]
+		},
+		{
+			location: {
+				latitude: 37.3350,
+				longitude: -121.8808,
+				altitude: 170
+			},
+			timestamp: 1710288000000,
+			status: "undetected",
+			image: "image5.jpg",
+			text: "Area clear near Spartan Complex",
+			score: 0.05,
+			bounding_boxes: []
+		},
+		{
+			location: {
+				latitude: 37.3362,
+				longitude: -121.8815,
+				altitude: 165
+			},
+			timestamp: 1710288900000,
+			status: "detected",
+			image: "image6.jpg",
+			text: "Drone picked up fast-moving object on 7th street",
+			score: 0.76,
+			bounding_boxes: [[150, 130, 290, 410]]
+		}
+	];
+	
 
 	return(
 		<div className="h-[80vh] overflow-y-auto flex flex-col space-y-4">
 		{instances.map((instance) => (
-			<InstanceCard key={instance.id} instance={instance}/>
+			<InstanceCard key={instance.timestamp} instance={instance}/>
 		))}
 		</div>
 	)
