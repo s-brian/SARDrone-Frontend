@@ -1,4 +1,5 @@
 import TeamSection from "../components/TeamSection";
+import HeroSection from "../components/TitleText";
 
 export default function About() {
   // Team data
@@ -158,25 +159,24 @@ export default function About() {
   return (
     <>
       <main className="min-h-screen bg-white">
+        {/* Hero Section */}
+        <HeroSection />
+
+        {/* Team Sections */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           {/* Header Section */}
           <div className="text-center mb-20">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight text-gray-900 relative inline-block">
-              <span className="text-red-500">About </span>
-              Us
-            </h1>
-            <p className="max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed">
-              We are a diverse group of passionate individuals who combine expertise, creativity, and dedication to deliver exceptional digital experiences that exceed expectations.
-            </p>
+            
           </div>
 
-          {/* Team Sections */}
+          {/* Rendering Team Sections */}
           {teams.map((team, index) => (
             <TeamSection key={team.id} team={team} imagePosition={index % 2 === 0 ? "right" : "left"} />
           ))}
         </div>
       </main>
 
+      {/* Footer Section */}
       <footer className="w-full py-4 px-6 border-t border-gray-800">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
