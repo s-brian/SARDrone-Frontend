@@ -198,7 +198,7 @@ export default function DronesPage() {
           <div className="text-center py-12">
             <div className="bg-gray-800 rounded-lg p-8 max-w-lg mx-auto">
               <h2 className="text-xl font-bold mb-4">No Drone Access</h2>
-              <p className="text-gray-400">You don't have access to any drones yet. Contact your administrator for access.</p>
+              <p className="text-gray-400">You don&apos;t have access to any drones yet. Contact your administrator for access.</p>
             </div>
           </div>
         )}
