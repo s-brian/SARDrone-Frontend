@@ -122,7 +122,7 @@ export default function InstanceHolder({droneId, onSetDroneSightings}){
 
 	
 	return(
-		<div className="h-[calc(100vh-100px)] max-h-[600px] overflow-y-auto flex flex-col space-y-4">
+		<div className="h-full overflow-y-auto flex flex-col space-y-4 p-4">
 		{instances.map((instance) => (
 			<InstanceCard key={instance.timestamp} instance={instance}/>
 		))}

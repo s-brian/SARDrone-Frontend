@@ -28,6 +28,15 @@ export default function DronesPage() {
           },
         });
 
+
+        if (response.status === 401) {
+          // Token expired — perform logout
+          localStorage.removeItem("authToken"); // if stored
+          window.dispatchEvent(new Event('storage'));
+          router.push("/login");
+          return;
+        }
+
         if (!response.ok) {
           throw new Error("Failed to fetch drone access information");
         }

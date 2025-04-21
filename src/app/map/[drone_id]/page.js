@@ -1,6 +1,6 @@
 "use client";
 import InstanceHolder from "../../components/InstanceHolder";
-import MapComponent from "../../components/MapComponent";
+import DroneMap from "../../components/DroneMap";
 import { motion } from "framer-motion";
 import Navbar from "../../components/Navbar";
 import { useState, useEffect } from "react";
@@ -20,24 +20,45 @@ export default function Map() {
 
   return (
     <div className="h-[calc(100vh-73px)] overflow-hidden"> {/* Subtract navbar height (py-4 = 32px + border 1px) */}
-      <div
-        id="map-container"
-        className="flex flex-row relative w-full h-full bg-white"
-      >
-        <MapComponent droneSightings={droneSightings} droneId={droneId}></MapComponent>
+      <div className="flex flex-row w-full h-full">
+        <div className="w-[80%] h-full relative">
+          <DroneMap droneSightings={droneSightings} droneId={droneId} />
+        </div>
 
-        <motion.nav
-          initial={{ x: 200 }}
-          animate={{ x: 0 }}
-          transition={{ type: "spring", stiffness: 50 }}
-        >
-          <div className="absolute bg-white rounded-lg right-4 top-4 whitespace-nowrap">
-            <InstanceHolder
-              droneId={droneId}
-              onSetDroneSightings={setDroneSightings}
-            ></InstanceHolder>
+        <div className="w-[20%] h-full flex flex-col bg-gray-100 border-l border-gray-300">
+          {/* Control Panel (15% height) */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="h-[15%] p-4 bg-white border-b border-gray-300"
+          >
+            <h2 className="text-lg font-semibold mb-2">Drone Control</h2>
+            <div className="flex space-x-2">
+              <button className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
+                Center Map
+              </button>
+              <button className="px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-700 text-sm">
+                Follow Drone
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Drone Detection List (85% height) */}
+          <div className="h-[85%] overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="h-full"
+            >
+              <InstanceHolder
+                droneId={droneId}
+                onSetDroneSightings={setDroneSightings}
+              />
+            </motion.div>
           </div>
-        </motion.nav>
+        </div>
       </div>
     </div>
   );
