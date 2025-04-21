@@ -10,7 +10,7 @@ import Image from "next/image";
 export default function DroneLogin() {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -29,19 +29,33 @@ export default function DroneLogin() {
     setIsLoading(true);
     setError("");
 
-    // Simulate authentication
     try {
-      // This would be replaced with actual authentication logic
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // For demo purposes, simple validation
-      if (formData.email && formData.password) {
-        router.push("/control");
-      } else {
-        setError("Please enter both email and password");
+      // Actual authentication logic using the API
+      const response = await fetch("https://api.meritdrone.site/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+        }),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.detail || "Authentication failed");
       }
+      
+      // Store token in localStorage for future API calls
+      localStorage.setItem("authToken", data.token);
+      window.dispatchEvent(new Event('storage'));
+      
+      // Redirect to control page after successful login
+      router.push("/drones");
     } catch (err) {
-      setError("Failed to login. Please try again.");
+      setError(err.message || "Failed to login. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -76,25 +90,25 @@ export default function DroneLogin() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <label
-                    htmlFor="email"
+                    htmlFor="username"
                     className="block text-sm font-medium text-gray-300"
                   >
-                    Email
+                    Username
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <User className="h-5 w-5 text-gray-500" />
                     </div>
                     <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
+                      id="username"
+                      name="username"
+                      type="text"
+                      autoComplete="username"
                       required
-                      value={formData.email}
+                      value={formData.username}
                       onChange={handleChange}
                       className="block w-full pl-10 pr-3 py-2 border border-gray-700 rounded-md bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
-                      placeholder="drone.pilot@merit.com"
+                      placeholder="username"
                     />
                   </div>
                 </div>

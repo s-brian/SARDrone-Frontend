@@ -5,13 +5,15 @@ import { motion } from "framer-motion"
 
  
 
-export default function InstanceHolder({onSetDroneSightings}){
+export default function InstanceHolder({droneId, onSetDroneSightings}){
 
 	const socketRef = useRef(null)
 
 	useEffect(() => {
-		let droneId = 1
-		const wsurl = `wss://api.meritdrone.site/drone/ws/${droneId}`;
+		// Use the provided droneId from props, or fallback to a default if not available
+		const droneIdToUse = droneId || 1;
+		console.log("Using drone ID for WebSocket connection:", droneIdToUse);
+		const wsurl = `wss://api.meritdrone.site/drone/ws/${droneIdToUse}`;
 		socketRef.current = new WebSocket(wsurl);
 
 		socketRef.current.onopen = () => {
@@ -32,7 +34,7 @@ export default function InstanceHolder({onSetDroneSightings}){
     return () => {
       socketRef.current?.close();
     };
-	}, [])
+	}, [droneId, onSetDroneSightings])
 
 	const instances = [
 		{
@@ -120,7 +122,7 @@ export default function InstanceHolder({onSetDroneSightings}){
 
 	
 	return(
-		<div className="h-[80vh] overflow-y-auto flex flex-col space-y-4">
+		<div className="h-[calc(100vh-100px)] max-h-[600px] overflow-y-auto flex flex-col space-y-4">
 		{instances.map((instance) => (
 			<InstanceCard key={instance.timestamp} instance={instance}/>
 		))}

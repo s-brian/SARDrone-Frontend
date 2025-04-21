@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Inter } from "next/font/google";
 import { motion } from "framer-motion"; // Import motion from framer-motion
@@ -10,6 +10,29 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Check for authentication token on component mount and when it changes
+  useEffect(() => {
+    // Check if we're in the browser environment
+    if (typeof window !== 'undefined') {
+      const authToken = localStorage.getItem('authToken');
+      setIsAuthenticated(!!authToken);
+      
+      // Setup event listener for storage changes
+      const handleStorageChange = () => {
+        const token = localStorage.getItem('authToken');
+        setIsAuthenticated(!!token);
+      };
+      
+      window.addEventListener('storage', handleStorageChange);
+      
+      // Cleanup event listener on unmount
+      return () => {
+        window.removeEventListener('storage', handleStorageChange);
+      };
+    }
+  }, []);
 
   // Toggle mobile menu state
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -61,6 +84,21 @@ export default function Navbar() {
           >
             Control
           </Link>
+          {isAuthenticated ? (
+            <Link
+              href="/drones"
+              className="text-white hover:text-red-500 transition-colors"
+            >
+              Drones
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              className="text-white hover:text-red-500 transition-colors"
+            >
+              Login
+            </Link>
+          )}
         </motion.nav>
       </div>
     </div>

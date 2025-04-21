@@ -14,6 +14,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const metadata = {
+  title: 'MERIT Drone',
+  description: 'Search and Rescue.',
+};
+
 export default async function RootLayout({ children }) {
   // const pathname = await headers().get("x-next-pathname") || "";
   // const showFooter = !pathname.startsWith("/map");
