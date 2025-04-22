@@ -78,12 +78,6 @@ export default function Navbar() {
           >
             About
           </Link>
-          <Link
-            href="/control"
-            className="text-white hover:text-red-500 transition-colors"
-          >
-            Control
-          </Link>
           {isAuthenticated ? (
             <Link
               href="/drones"

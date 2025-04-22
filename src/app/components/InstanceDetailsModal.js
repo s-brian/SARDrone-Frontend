@@ -5,7 +5,7 @@ export default function InstanceDetailsModal({ open, onOpenChange, instance }) {
 
   const date = new Date(instance.timestamp);
   const imagesrc = `data:image/jpeg;base64,${instance.image}`
-  console.log(instance.image)
+  // console.log(instance.image)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

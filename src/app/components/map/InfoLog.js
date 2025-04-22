@@ -122,12 +122,21 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
   );
 */
 
+
+function startDrone(){
+  socketRef.current.send({action:"takeoff"});
+  console.log("STARTING DRONE")
+}
+
   return (
     <div className="h-full flex flex-col">
       {/* Control Panel */}
       <div className="p-4 bg-white border-b border-gray-300">
         <h2 className="text-lg font-semibold mb-2">Drone Control</h2>
         <div className="flex space-x-2">
+          <button className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm" onClick={() => startDrone()}>
+            Start Drone
+          </button>
           <button className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
             Center Map
           </button>

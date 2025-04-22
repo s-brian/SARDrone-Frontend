@@ -10,31 +10,12 @@ export default function InstanceHolder({droneId, onSetDroneSightings}){
 	const socketRef = useRef(null)
 
 	useEffect(() => {
-		// Use the provided droneId from props, or fallback to a default if not available
-		const droneIdToUse = droneId || 1;
-		console.log("Using drone ID for WebSocket connection:", droneIdToUse);
-		const wsurl = `wss://api.meritdrone.site/drone/ws/${droneIdToUse}`;
-		socketRef.current = new WebSocket(wsurl);
-
-		socketRef.current.onopen = () => {
-      console.log('WebSocket connected to drone');
-    };
-
-    socketRef.current.onmessage = (event) => {
-			try{
-				const data = JSON.parse(event.data)
-				console.log('Drone data: ', data)
-			} catch (err){
-				console.log('Invalid JSON from websocket: ', event.data)
-			}
-      
-    };
-	onSetDroneSightings(droneSightings)
+    
+	  onSetDroneSightings(droneSightings)
 
     return () => {
-      socketRef.current?.close();
     };
-	}, [droneId, onSetDroneSightings])
+	}, [])
 
 	const instances = [
 		{
