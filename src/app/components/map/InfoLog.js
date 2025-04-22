@@ -1,16 +1,58 @@
 "use client";
 import InstanceCard from "./InstanceCard";
-
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { droneInstances } from "./sampleDroneData";
 
-export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
+export default function InfoLog({ droneId, droneLogs, setDroneLogs }) {
   const router = useRouter();
-
   const socketRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
   const [sortBy, setSortBy] = useState("all");
+  const [hasWriteAccess, setHasWriteAccess] = useState(false);
+
+  // Check if user has write access to this drone
+  useEffect(() => {
+    const checkDroneAccess = async () => {
+      if (!droneId) return;
+
+      try {
+        const token = localStorage.getItem("authToken");
+        if (!token) {
+          console.error("No authentication token found");
+          return;
+        }
+
+        const response = await fetch(
+          "https://api.meritdrone.site/login/drones",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (response.status === 401) {
+          localStorage.removeItem("authToken");
+          window.dispatchEvent(new Event("storage"));
+          router.push("/login");
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch drone access");
+        }
+
+        const data = await response.json();
+        // Check if this drone is in write_drones list
+        setHasWriteAccess(data.write_drones.includes(droneId));
+      } catch (error) {
+        console.error("Error checking drone access:", error);
+      }
+    };
+
+    checkDroneAccess();
+  }, [droneId, router]);
 
   // Fetch initial drone logs from API
   useEffect(() => {
@@ -36,8 +78,7 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
         );
 
         if (response.status === 401) {
-          // Token expired — perform logout
-          localStorage.removeItem("authToken"); // if stored
+          localStorage.removeItem("authToken");
           window.dispatchEvent(new Event("storage"));
           router.push("/login");
           return;
@@ -52,7 +93,6 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
         setDroneLogs(data);
       } catch (error) {
         console.error("Error fetching drone logs:", error);
-        // Fallback to sample data if API request fails
         setDroneLogs([]);
       } finally {
         setIsLoading(false);
@@ -66,7 +106,6 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
   useEffect(() => {
     if (!droneId) return;
 
-    // Get authentication token
     const token = localStorage.getItem("authToken");
     if (!token) {
       console.error("No authentication token found for WebSocket connection");
@@ -74,7 +113,6 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
     }
 
     console.log("Using drone ID for WebSocket connection:", droneId);
-    // Include token as query parameter
     const wsurl = `wss://api.meritdrone.site/drone/${droneId}/ws?token=${encodeURIComponent(
       token
     )}`;
@@ -92,7 +130,6 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
       console.log(`WebSocket closed with code ${event.code}`);
       if (event.code === 4401) {
         console.error("Authentication failed for WebSocket connection");
-        // Token expired — could redirect to login
         localStorage.removeItem("authToken");
         window.dispatchEvent(new Event("storage"));
       } else if (event.code === 4403) {
@@ -104,7 +141,6 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
       try {
         const data = JSON.parse(event.data);
         console.log("Drone data: ", data);
-        // Add new real-time data to the logs
         setDroneLogs((prevLogs) => [data, ...prevLogs]);
       } catch (err) {
         console.log("Invalid JSON from websocket: ", event.data);
@@ -116,7 +152,6 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
     };
   }, [droneId]);
 
-  // Sort drone logs based on detection status
   const sortedDroneLogs = droneLogs ? [...droneLogs].sort((a, b) => {
     if (sortBy === "detected") {
       return (b.score > 85 ? 1 : 0) - (a.score > 85 ? 1 : 0);
@@ -126,9 +161,9 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
     return 0;
   }) : [];
 
-  function startDrone(){
+  function startDrone() {
     socketRef.current.send("takeoff");
-    alert("Starting Drone")
+    alert("Starting Drone");
   }
 
   return (
@@ -137,9 +172,14 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
       <div className="p-4 bg-white border-b border-gray-300">
         <h2 className="text-lg font-semibold mb-2">Drone Control</h2>
         <div className="flex space-x-2">
-          <button className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm" onClick={() => startDrone()}>
-            Start Drone
-          </button>
+          {hasWriteAccess && (
+            <button 
+              className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm" 
+              onClick={() => startDrone()}
+            >
+              Start Drone
+            </button>
+          )}
         </div>
       </div>
 
@@ -163,6 +203,7 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
               Clear
             </button>
           </div>
+
           <div className="flex flex-col space-y-4">
             {isLoading ? (
               <div className="flex flex-col items-center justify-center py-8">

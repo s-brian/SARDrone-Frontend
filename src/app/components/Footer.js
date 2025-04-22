@@ -11,7 +11,7 @@ export function Footer() {
           <p className="text-sm text-gray-400">Connect with us</p>
           <div className="flex items-center gap-3">
             <Link
-              href="https://github.com/yourusername"
+              href="https://github.com/s-brian/SARDrone-Frontend"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"
@@ -20,7 +20,7 @@ export function Footer() {
               <span className="sr-only">GitHub</span>
             </Link>
             <Link
-              href="https://instagram.com/yourusername"
+              href="https://www.instagram.com/pnm.25/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"
@@ -29,7 +29,7 @@ export function Footer() {
               <span className="sr-only">Instagram</span>
             </Link>
             <Link
-              href="mailto:your.email@gmail.com"
+              href="mailto:pnmspring2025@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"
