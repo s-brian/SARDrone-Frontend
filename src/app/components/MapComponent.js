@@ -5,7 +5,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import InstanceDetailsModal from "./InstanceDetailsModal"
 import { useState } from "react";
 
-export default function MapComponent({droneSightings}) {
+export default function MapComponent({droneSightings, droneId}) {
   const mapRef = useRef();
   const mapContainerRef = useRef();
 
@@ -22,6 +22,11 @@ export default function MapComponent({droneSightings}) {
       center: [-121.881, 37.3352], 
       zoom: 11, 
     })
+    
+    // Log the drone ID being used for the map view
+    if (droneId) {
+      console.log("MapComponent rendering for drone ID:", droneId);
+    }
 
 
 
@@ -47,6 +52,11 @@ export default function MapComponent({droneSightings}) {
 
   return (
     <div className="w-full h-full relative">
+      {droneId && (
+        <div className="absolute top-4 left-4 z-10 bg-black bg-opacity-70 text-white px-3 py-2 rounded-md">
+          <span className="font-semibold">Drone ID: {droneId}</span>
+        </div>
+      )}
       <div
         ref={mapContainerRef}
         className="w-full h-full"

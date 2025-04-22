@@ -1,4 +1,5 @@
-import TeamSection from "../components/TeamSection"
+import TeamSection from "../components/TeamSection";
+import HeroSection from "../components/TitleText";
 
 export default function About() {
   // Team data
@@ -8,7 +9,7 @@ export default function About() {
       name: "Front-End Team",
       description:
         "Our creative visionaries who transform concepts into stunning visual experiences. They blend aesthetics with functionality to create designs that captivate and engage.",
-      image: "/file.svg",
+      image: "/frontend.jpg",
       members: [
         {
           name: "Brian Shih",
@@ -35,7 +36,7 @@ export default function About() {
       name: "Back-End Team",
       description:
         "Our technical experts who build robust, scalable solutions using cutting-edge technologies. They turn designs into functional, high-performance digital products.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/backend.jpg",
       members: [
         {
           name: "Kevin Tsoi",
@@ -74,7 +75,7 @@ export default function About() {
       name: "Electrical Team",
       description:
         "Our strategic thinkers who align digital solutions with business objectives. They analyze market trends and user needs to guide project direction.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/electrical.jpg",
       members: [
         {
           name: "Erik Cheng",
@@ -113,7 +114,7 @@ export default function About() {
       name: "CAD Team",
       description:
         "Our marketing specialists who amplify brand presence and drive user acquisition. They craft compelling narratives that resonate with target audiences.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/cad.jpg",
       members: [
         {
           name: "Vivek Bhakta",
@@ -153,28 +154,41 @@ export default function About() {
         },
       ],
     },
-  ]
+  ];
 
   return (
-    <main className="min-h-screen bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        {/* Header Section */}
-        <div className="text-center mb-20">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight text-gray-900 relative inline-block">
-            <span className="text-red-500">About </span>
-            Us
-          </h1>
-          <p className="max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed">
-            We are a diverse group of passionate individuals who combine expertise, creativity, and dedication to deliver
-            exceptional digital experiences that exceed expectations.
-          </p>
-        </div>
+    <>
+      <main className="min-h-screen bg-white">
+        {/* Hero Section */}
+        <HeroSection />
 
         {/* Team Sections */}
-        {teams.map((team, index) => (
-          <TeamSection key={team.id} team={team} imagePosition={index % 2 === 0 ? "right" : "left"} />
-        ))}
-      </div>
-    </main>
-  )
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          {/* Header Section */}
+          <div className="text-center mb-20">
+            
+          </div>
+
+          {/* Rendering Team Sections */}
+          {teams.map((team, index) => (
+            <TeamSection key={team.id} team={team} imagePosition={index % 2 === 0 ? "right" : "left"} />
+          ))}
+        </div>
+      </main>
+
+      {/* Footer Section */}
+      <footer className="w-full py-4 px-6 border-t border-gray-800">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm">
+            &copy; {new Date().getFullYear()} MERIT+ Drone Systems. All rights reserved.
+          </p>
+          <div className="flex space-x-4 mt-4 md:mt-0">
+            <a href="#" className="text-gray-400 hover:text-red-500 transition-colors">Privacy Policy</a>
+            <a href="#" className="text-gray-400 hover:text-red-500 transition-colors">Terms of Service</a>
+            <a href="#" className="text-gray-400 hover:text-red-500 transition-colors">Support</a>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
 }
