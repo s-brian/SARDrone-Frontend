@@ -2,7 +2,7 @@
 import { useState } from "react";
 import InfoModal from "./InfoModal";
 
-export default function selectedLogCard({ selectedLog }) {
+export default function InstanceCard({ selectedLog }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const timestamp = selectedLog.timestamp;
   const date = new Date(timestamp);
