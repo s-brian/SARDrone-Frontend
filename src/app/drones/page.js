@@ -103,7 +103,7 @@ export default function DronesPage() {
     <div className="min-h-screen bg-black text-white">
       {/* Header with user info */}
       <header className="bg-gray-900 p-6 border-b border-gray-800">
-        <div className="container mx-auto flex items-center">
+        <div className="container mx-auto flex items-center justify-between">
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -117,6 +117,26 @@ export default function DronesPage() {
               <h1 className="text-xl font-bold">Welcome, {userData?.username}</h1>
               <p className="text-sm text-gray-400">Drone Control Dashboard</p>
             </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex items-center space-x-4"
+          >
+            {/* <button
+              onClick={() => router.push('/map')}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors flex items-center space-x-2"
+            >
+              <span>View All Sightings</span>
+            </button> */}
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors flex items-center space-x-2"
+            >
+              <LogOut size={18} />
+              <span>Logout</span>
+            </button>
           </motion.div>
         </div>
       </header>

@@ -10,6 +10,7 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
 
   const socketRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [sortBy, setSortBy] = useState("all");
 
   // Fetch initial drone logs from API
   useEffect(() => {
@@ -115,18 +116,20 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
     };
   }, [droneId]);
 
-  /*
-  // Using the imported sample data from sampleDroneData.js
-  const droneSightings = droneInstances.filter(
-    (inst) => inst.status === "detected"
-  );
-*/
+  // Sort drone logs based on detection status
+  const sortedDroneLogs = droneLogs ? [...droneLogs].sort((a, b) => {
+    if (sortBy === "detected") {
+      return (b.score > 85 ? 1 : 0) - (a.score > 85 ? 1 : 0);
+    } else if (sortBy === "undetected") {
+      return (a.score > 85 ? 1 : 0) - (b.score > 85 ? 1 : 0);
+    }
+    return 0;
+  }) : [];
 
-
-function startDrone(){
-  socketRef.current.send({action:"takeoff"});
-  console.log("STARTING DRONE")
-}
+  function startDrone(){
+    socketRef.current.send("takeoff");
+    alert("Starting Drone")
+  }
 
   return (
     <div className="h-full flex flex-col">
@@ -137,32 +140,45 @@ function startDrone(){
           <button className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm" onClick={() => startDrone()}>
             Start Drone
           </button>
-          <button className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
-            Center Map
-          </button>
-          <button className="px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-700 text-sm">
-            Follow Drone
-          </button>
         </div>
       </div>
 
       {/* Drone Detection List */}
       <div className="flex-1 overflow-y-auto">
-        <div className="flex flex-col space-y-4 p-4">
-          {isLoading ? (
-            <div className="flex flex-col items-center justify-center py-8">
-              <div className="w-8 h-8 border-t-2 border-b-2 border-blue-500 rounded-full animate-spin mb-2"></div>
-              <p className="text-gray-600">Loading drone logs...</p>
-            </div>
-          ) : droneLogs && droneLogs.length > 0 ? (
-            droneLogs.map((instance) => (
-              <InstanceCard key={instance.timestamp} selectedLog={instance} />
-            ))
-          ) : (
-            <div className="text-center py-8 text-gray-500">
-              No drone logs available
-            </div>
-          )}
+        <div className="p-4">
+          <div className="flex gap-2 mb-4">
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md"
+            >
+              <option value="all">All Logs</option>
+              <option value="detected">Detected First</option>
+              <option value="undetected">Undetected First</option>
+            </select>
+            <button
+              onClick={() => setDroneLogs([])}
+              className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 flex-shrink-0"
+            >
+              Clear
+            </button>
+          </div>
+          <div className="flex flex-col space-y-4">
+            {isLoading ? (
+              <div className="flex flex-col items-center justify-center py-8">
+                <div className="w-8 h-8 border-t-2 border-b-2 border-blue-500 rounded-full animate-spin mb-2"></div>
+                <p className="text-gray-600">Loading drone logs...</p>
+              </div>
+            ) : droneLogs && droneLogs.length > 0 ? (
+              sortedDroneLogs.map((instance) => (
+                <InstanceCard key={instance.timestamp} selectedLog={instance} />
+              ))
+            ) : (
+              <div className="text-center py-8 text-gray-500">
+                No drone logs available
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

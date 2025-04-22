@@ -23,6 +23,7 @@ export default function Map() {
         >
           <div className="absolute bg-white rounded-lg right-4 top-4 whitespace-nowrap">
             <InstanceHolder
+              droneId="1"
               onSetDroneSightings={setDroneSightings}
             ></InstanceHolder>
           </div>

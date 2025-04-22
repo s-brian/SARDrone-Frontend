@@ -67,12 +67,6 @@ export default function Navbar() {
             Home
           </Link>
           <Link
-            href="/map"
-            className="text-white hover:text-red-500 transition-colors"
-          >
-            Map
-          </Link>
-          <Link
             href="/about"
             className="text-white hover:text-red-500 transition-colors"
           >
