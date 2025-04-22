@@ -4,6 +4,8 @@ export default function InstanceDetailsModal({ open, onOpenChange, instance }) {
   if (!instance) return null;
 
   const date = new Date(instance.timestamp);
+  const imagesrc = `data:image/jpeg;base64,${instance.image}`
+  console.log(instance.image)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -14,8 +16,13 @@ export default function InstanceDetailsModal({ open, onOpenChange, instance }) {
 
         <div className="grid gap-4 py-4 text-sm text-gray-900">
           <div>
+            <img src={imagesrc} alt="Drone Capture" />
+          </div>
+
+          <div>
             <h3 className="font-semibold">Date:</h3>
             <p>{date.toString()}</p>
+            <p>{instance.timestamp}</p>
           </div>
 
           <div>
