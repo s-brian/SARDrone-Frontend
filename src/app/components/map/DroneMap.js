@@ -99,10 +99,10 @@ mapRef.current.on('style.load', () => {
     markerRefs.current = [];
 
     droneLogs.forEach((log) => {
+      console.log(log);
       if (!log.hasOwnProperty("score") || log["score"] <= 80) {
         return;
       }
-
       const coordinates = [log.location.longitude, log.location.latitude];
       const marker = new mapboxgl.Marker({ color: "red" })
         .setLngLat(coordinates)

@@ -39,8 +39,6 @@ export default function Map() {
             droneId={droneId}
             droneLogs={droneLogs}
             setDroneLogs={setDroneLogs}
-            selectedLog={selectedLog}
-            setSelectedLog={setSelectedLog}
           />
         </div>
       </div>
