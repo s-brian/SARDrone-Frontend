@@ -28,9 +28,9 @@ export default function HeroSection() {
   const words = heading.split(" ");
 
   return (
-    <div className="text-center mb-10 pt-36">
+    <div className="text-center mb-8 pt-36">
       <motion.h1
-        className="text-5xl md:text-6xl font-bold mb-6 tracking-tight text-gray-900 inline-flex flex-wrap justify-center gap-x-2"
+        className="text-5xl md:text-6xl font-bold mb-8 tracking-tight text-gray-900 inline-flex flex-wrap justify-center gap-x-2"
         variants={container}
         initial="hidden"
         animate="visible"
