@@ -2,11 +2,17 @@
 import Image from "next/image";
 import AnimatedText from "./components/AnimatedText";
 import Navbar from "./components/Navbar";
+import HeroSection from "./components/HomeTitleText";
 import { Footer } from "./components/Footer";
+
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white overflow-hidden">
+
+{/* Hero Title Animation*/}
+<HeroSection/>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <AnimatedText
           title="our mission"
