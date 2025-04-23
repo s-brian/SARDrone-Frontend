@@ -183,8 +183,6 @@ export default function About() {
 
         {/* Hero Section */}
         <HeroSection />
-
-       {/* Glowing Border around title */}
        
         
         {/* Team Sections */}

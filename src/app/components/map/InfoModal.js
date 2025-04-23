@@ -72,8 +72,8 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] max-h-[90vh] !items-start !block overflow-hidden bg-gray-50">
-        <DialogHeader className="pb-2 bg-white shadow-sm">
+      <DialogContent className="max-w-[95vw] max-h-[90vh] !items-start !block overflow-hidden bg-white">
+        <DialogHeader className="pb-2 bg-white">
           <DialogTitle className="text-xl font-semibold text-gray-800">
             Log Details
           </DialogTitle>
