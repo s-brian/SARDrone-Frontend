@@ -4,6 +4,7 @@ import AnimatedText from "./components/AnimatedText";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HomeTitleText";
 import { Footer } from "./components/Footer";
+import DroneRoutingArrow from "./components/DroneRoutingArrow";
 
 
 
@@ -39,7 +40,9 @@ export default function Home() {
           imagePosition="right"
         />
       </div>
-      
+      <div className="flex flex-col items-center justify-center py-16">
+        <DroneRoutingArrow />
+      </div>
       <Footer></Footer>
     </main>
   );

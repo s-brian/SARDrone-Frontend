@@ -19,6 +19,9 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
   const handleImageLoad = () => {
     if (!imageRef.current) return;
 
+    const { width, height } = imageRef.current;
+    setImageDimensions({ width, height });
+
     let parsed = [];
 
     try {
@@ -33,19 +36,29 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
         );
       }
 
-      const percentageBoxes = parsed
+      // Process bounding boxes according to Gemini specifications
+      const scaledBoxes = parsed
         .filter(
           (box) =>
             Array.isArray(box) &&
             box.length === 4 &&
             box.every((n) => typeof n === "number" && !isNaN(n))
         )
-        .map(([x1, y1, x2, y2]) => ({
-          left: `${(x1 / 1000) * 100}%`,
-          top: `${(y1 / 1000) * 100}%`,
-          width: `${((x2 - x1) / 1000) * 100}%`,
-          height: `${((y2 - y1) / 1000) * 100}%`,
-        }));
+        .map(([y_min, x_min, y_max, x_max]) => {
+          // Step 1: Divide each coordinate by 1000 (Gemini normalization)
+          const normalizedY_min = y_min / 1000;
+          const normalizedX_min = x_min / 1000;
+          const normalizedY_max = y_max / 1000;
+          const normalizedX_max = x_max / 1000;
+          
+          // Step 2 & 3: Convert to pixel coordinates
+          return {
+            left: normalizedX_min * width,
+            top: normalizedY_min * height,
+            width: (normalizedX_max - normalizedX_min) * width,
+            height: (normalizedY_max - normalizedY_min) * height,
+          };
+        });
 
       setBoxes(percentageBoxes);
     } catch (e) {
@@ -55,8 +68,8 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] max-h-[90vh] !items-start !block overflow-hidden bg-gray-50">
-        <DialogHeader className="pb-2 bg-gray-50 ">
+      <DialogContent className="max-w-[95vw] max-h-[90vh] !items-start !block overflow-hidden bg-white">
+        <DialogHeader className="pb-2 bg-white">
           <DialogTitle className="text-xl font-semibold text-gray-800">
             Log Details
           </DialogTitle>
@@ -74,29 +87,25 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
                     className="w-full max-h-[50vh] object-contain"
                     onLoad={handleImageLoad}
                   />
-                  {/* Bounding boxes using percentages */}
-                  {log.status &&
-                    boxes.map((box, index) => (
-                      <div
-                        key={index}
-                        className="absolute border-2 border-red-500 rounded-sm pointer-events-none"
-                        style={{
-                          left: box.left,
-                          top: box.top,
-                          width: box.width,
-                          height: box.height,
-                          boxShadow: "0 0 0 1px rgba(0,0,0,0.3)",
-                        }}
-                      />
-                    ))}
+                  {boxes.map((box, index) => (
+                    <div
+                      key={index}
+                      className="absolute border-2 border-red-500 rounded-sm pointer-events-none"
+                      style={{
+                        left: `${box.left}px`,
+                        top: `${box.top}px`,
+                        width: `${box.width}px`,
+                        height: `${box.height}px`,
+                        boxShadow: "0 0 0 1px rgba(0,0,0,0.3)",
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             )}
 
-            {/* Info Cards */}
             <div className="grid gap-4 px-4">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {/* Detection Card */}
                 <div className="bg-white rounded-xl p-4 shadow-sm">
                   <div className="flex items-center gap-2 mb-3">
                     <div
@@ -116,7 +125,6 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
                   </p>
                 </div>
 
-                {/* Time Card */}
                 <div className="bg-white rounded-xl p-4 shadow-sm">
                   <div className="flex items-center gap-2 mb-3">
                     <div className="h-2 w-2 rounded-full bg-blue-500"></div>
@@ -135,7 +143,6 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
                   </p>
                 </div>
 
-                {/* Location Card */}
                 <div className="bg-white rounded-xl p-4 shadow-sm">
                   <div className="flex items-center gap-2 mb-3">
                     <div className="h-2 w-2 rounded-full bg-purple-500"></div>
@@ -158,7 +165,6 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
                 </div>
               </div>
 
-              {/* Additional Info Card */}
               {log.text && (
                 <div className="bg-white rounded-xl p-4 shadow-sm">
                   <div className="flex items-center gap-2 mb-3">

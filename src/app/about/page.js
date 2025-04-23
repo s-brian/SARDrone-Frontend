@@ -186,17 +186,16 @@ export default function About() {
 
         {/* Hero Section */}
         <HeroSection />
-
-       {/* Glowing Border around title */}
        
+       {/* Header Section & Image Carousel*/}
+       <div className="text-center mb-20">
+          <ImageCarousel />
+          </div>
         
         {/* Team Sections */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           
-          {/* Header Section & Image Carousel*/}
-          <div className="text-center mb-20">
-          <ImageCarousel />
-          </div>
+          
 
           {/* Rendering Team Sections */}
           {teams.map((team, index) => (
