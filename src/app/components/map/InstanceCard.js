@@ -6,7 +6,7 @@ export default function InstanceCard({ selectedLog }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const timestamp = selectedLog.timestamp;
   const date = new Date(timestamp);
-  const isHumanDetected = selectedLog.score > 85;
+  const isHumanDetected = selectedLog.score > 50;
 
   return (
     <div>

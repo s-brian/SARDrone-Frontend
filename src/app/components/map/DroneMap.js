@@ -20,7 +20,6 @@ export default function MapComponent({
 
   const [isModalOpen, setIsModalOpen] = useState(null);
 
-  // 1️⃣ Initialize map only once
   useEffect(() => {
     mapboxgl.accessToken =
       "pk.eyJ1IjoiYnJpYW4tcyIsImEiOiJjbThwZGhncWkwYWlqMnhvZWx2OGl6OHl4In0.F3SE6K76b2eR5Q31eNgJlQ";
@@ -40,8 +39,8 @@ export default function MapComponent({
       style: "mapbox://styles/mapbox/standard",
       center: defaultCenter,
       zoom: defaultZoom,
-      pitch: 45, // tilt the camera for 3D effect
-      bearing: -20, // optional: rotate for angle
+      pitch: 45, 
+      bearing: -20, 
     });
 
     if (droneId) {
@@ -89,7 +88,6 @@ mapRef.current.on('style.load', () => {
     });
   };
 
-  // 2️⃣ Add or update markers when sightings change
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !droneLogs.length) return;
@@ -100,7 +98,7 @@ mapRef.current.on('style.load', () => {
 
     droneLogs.forEach((log) => {
       console.log(log);
-      if (!log.hasOwnProperty("score") || log["score"] <= 80) {
+      if (!log.hasOwnProperty("score") || log["score"] <= 50) {
         return;
       }
       const coordinates = [log.location.longitude, log.location.latitude];
