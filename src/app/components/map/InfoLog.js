@@ -154,15 +154,16 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs }) {
 
   const sortedDroneLogs = droneLogs ? [...droneLogs].sort((a, b) => {
     if (sortBy === "detected") {
-      return (b.score > 85 ? 1 : 0) - (a.score > 85 ? 1 : 0);
+      return (b.score > 50 ? 1 : 0) - (a.score > 50 ? 1 : 0);
     } else if (sortBy === "undetected") {
-      return (a.score > 85 ? 1 : 0) - (b.score > 85 ? 1 : 0);
+      return (a.score > 50 ? 1 : 0) - (b.score > 50 ? 1 : 0);
     }
     return 0;
   }) : [];
 
   function startDrone() {
     socketRef.current.send("takeoff");
+    console.log("Starting Drone")
     alert("Starting Drone");
   }
 
