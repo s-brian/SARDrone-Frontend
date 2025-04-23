@@ -2,6 +2,7 @@
 import TeamSection from "../components/TeamSection";
 import ImageCarousel from "../components/TitleCarousel";
 import HeroSection from "../components/AboutTitleText";
+import { Footer } from "../components/Footer";
 
 export default function About() {
   // Team data
@@ -205,7 +206,8 @@ export default function About() {
       </main>
 
       {/* Footer Section */}
-      <footer className="w-full py-4 px-6 border-t border-gray-800">
+      <Footer></Footer>
+      {/* <footer className="w-full py-4 px-6 border-t border-gray-800">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
             &copy; 2025 MERIT+ Drone Systems. All rights reserved.
@@ -214,7 +216,7 @@ export default function About() {
             <a href="mailto:pnmspring2025@gmail.com" className="text-gray-400 hover:text-red-500 transition-colors">Support</a>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 }
