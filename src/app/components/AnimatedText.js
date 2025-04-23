@@ -26,16 +26,17 @@ export default function AnimatedText({ title, description, imageUrl, imageAlt, i
       <motion.div className="flex-1" initial="hidden" animate={isInView ? "visible" : "hidden"} variants={textVariants}>
         <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-gray-900 font-sans">
           {title.split(" ").map((word, i) => (
-            <span key={i} className={i === 0 ? "relative" : ""}>
-              {i === 0 && (
-                <span className="absolute bottom-1 left-0 w-full h-1 bg-red-500 transform scale-x-50 origin-left"></span>
-              )}
+            <span
+              key={i}
+              className={i === 1 ? "text-red-500 underline decoration-red-500 decoration-2 underline-offset-4" : ""}
+            >
               {word}{" "}
             </span>
           ))}
         </h2>
         <p className="text-lg text-gray-600 leading-relaxed">{description}</p>
       </motion.div>
+
 
       <motion.div
         className="flex-1"

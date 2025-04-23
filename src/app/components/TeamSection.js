@@ -32,10 +32,10 @@ export default function TeamSection({ team, imagePosition }) {
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-gray-900">
           {team.name.split(" ").map((word, i) => (
-            <span key={i} className={i === 0 ? "relative" : ""}>
-              {i === 0 && (
-                <span className="absolute bottom-1 left-0 w-full h-1 bg-red-500 transform scale-x-50 origin-left"></span>
-              )}
+            <span
+              key={i}
+              className={i === 0 ? "text-red-500 underline decoration-red-500 decoration-2 underline-offset-4" : ""}
+            >
               {word}{" "}
             </span>
           ))}
