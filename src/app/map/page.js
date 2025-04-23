@@ -1,12 +1,13 @@
 "use client";
 import InstanceHolder from "../components/InstanceHolder";
-import MapComponent from "../components/MapComponent";
+import DroneMap from "../components/map/DroneMap";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
 
 export default function Map() {
   const [droneSightings, setDroneSightings] = useState([]);
+  const [selectedLog, setSelectedLog] = useState(null);
 
   return (
     <div className="h-screen overflow-hidden">
@@ -14,7 +15,12 @@ export default function Map() {
         id="map-container"
         className="flex flex-row relative w-full h-screen bg-white"
       >
-        <MapComponent droneSightings={droneSightings}></MapComponent>
+        <DroneMap 
+          droneLogs={droneSightings}
+          droneId="1"
+          selectedLog={selectedLog}
+          setSelectedLog={setSelectedLog}
+        />
 
         <motion.nav
           initial={{ x: 200 }}
@@ -25,7 +31,9 @@ export default function Map() {
             <InstanceHolder
               droneId="1"
               onSetDroneSightings={setDroneSightings}
-            ></InstanceHolder>
+              selectedLog={selectedLog}
+              setSelectedLog={setSelectedLog}
+            />
           </div>
         </motion.nav>
       </div>

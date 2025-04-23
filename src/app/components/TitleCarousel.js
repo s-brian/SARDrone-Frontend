@@ -8,7 +8,7 @@ const images = [
   "/working.jpg",
   "/canes.jpg",
   "/squad.jpg",
-  "/campfire.jpg",
+  "/campfire.JPG",
 ];
 
 const ImageCarousel = ({ reverse = false }) => {
