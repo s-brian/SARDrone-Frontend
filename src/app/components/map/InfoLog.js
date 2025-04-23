@@ -1,15 +1,58 @@
 "use client";
 import InstanceCard from "./InstanceCard";
-
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { droneInstances } from "./sampleDroneData";
 
-export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
+export default function InfoLog({ droneId, droneLogs, setDroneLogs }) {
   const router = useRouter();
-
   const socketRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [sortBy, setSortBy] = useState("all");
+  const [hasWriteAccess, setHasWriteAccess] = useState(false);
+
+  // Check if user has write access to this drone
+  useEffect(() => {
+    const checkDroneAccess = async () => {
+      if (!droneId) return;
+
+      try {
+        const token = localStorage.getItem("authToken");
+        if (!token) {
+          console.error("No authentication token found");
+          return;
+        }
+
+        const response = await fetch(
+          "https://api.meritdrone.site/login/drones",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (response.status === 401) {
+          localStorage.removeItem("authToken");
+          window.dispatchEvent(new Event("storage"));
+          router.push("/login");
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch drone access");
+        }
+
+        const data = await response.json();
+        // Check if this drone is in write_drones list
+        setHasWriteAccess(data.write_drones.includes(droneId));
+      } catch (error) {
+        console.error("Error checking drone access:", error);
+      }
+    };
+
+    checkDroneAccess();
+  }, [droneId, router]);
 
   // Fetch initial drone logs from API
   useEffect(() => {
@@ -35,8 +78,7 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
         );
 
         if (response.status === 401) {
-          // Token expired — perform logout
-          localStorage.removeItem("authToken"); // if stored
+          localStorage.removeItem("authToken");
           window.dispatchEvent(new Event("storage"));
           router.push("/login");
           return;
@@ -51,7 +93,6 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
         setDroneLogs(data);
       } catch (error) {
         console.error("Error fetching drone logs:", error);
-        // Fallback to sample data if API request fails
         setDroneLogs([]);
       } finally {
         setIsLoading(false);
@@ -65,7 +106,6 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
   useEffect(() => {
     if (!droneId) return;
 
-    // Get authentication token
     const token = localStorage.getItem("authToken");
     if (!token) {
       console.error("No authentication token found for WebSocket connection");
@@ -73,7 +113,6 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
     }
 
     console.log("Using drone ID for WebSocket connection:", droneId);
-    // Include token as query parameter
     const wsurl = `wss://api.meritdrone.site/drone/${droneId}/ws?token=${encodeURIComponent(
       token
     )}`;
@@ -91,7 +130,6 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
       console.log(`WebSocket closed with code ${event.code}`);
       if (event.code === 4401) {
         console.error("Authentication failed for WebSocket connection");
-        // Token expired — could redirect to login
         localStorage.removeItem("authToken");
         window.dispatchEvent(new Event("storage"));
       } else if (event.code === 4403) {
@@ -103,7 +141,6 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
       try {
         const data = JSON.parse(event.data);
         console.log("Drone data: ", data);
-        // Add new real-time data to the logs
         setDroneLogs((prevLogs) => [data, ...prevLogs]);
       } catch (err) {
         console.log("Invalid JSON from websocket: ", event.data);
@@ -115,18 +152,19 @@ export default function InfoLog({ droneId, droneLogs, setDroneLogs,  }) {
     };
   }, [droneId]);
 
-  /*
-  // Using the imported sample data from sampleDroneData.js
-  const droneSightings = droneInstances.filter(
-    (inst) => inst.status === "detected"
-  );
-*/
+  const sortedDroneLogs = droneLogs ? [...droneLogs].sort((a, b) => {
+    if (sortBy === "detected") {
+      return (b.score > 85 ? 1 : 0) - (a.score > 85 ? 1 : 0);
+    } else if (sortBy === "undetected") {
+      return (a.score > 85 ? 1 : 0) - (b.score > 85 ? 1 : 0);
+    }
+    return 0;
+  }) : [];
 
-
-function startDrone(){
-  socketRef.current.send({action:"takeoff"});
-  console.log("STARTING DRONE")
-}
+  function startDrone() {
+    socketRef.current.send("takeoff");
+    alert("Starting Drone");
+  }
 
   return (
     <div className="h-full flex flex-col">
@@ -134,35 +172,54 @@ function startDrone(){
       <div className="p-4 bg-white border-b border-gray-300">
         <h2 className="text-lg font-semibold mb-2">Drone Control</h2>
         <div className="flex space-x-2">
-          <button className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm" onClick={() => startDrone()}>
-            Start Drone
-          </button>
-          <button className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
-            Center Map
-          </button>
-          <button className="px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-700 text-sm">
-            Follow Drone
-          </button>
+          {hasWriteAccess && (
+            <button 
+              className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm" 
+              onClick={() => startDrone()}
+            >
+              Start Drone
+            </button>
+          )}
         </div>
       </div>
 
       {/* Drone Detection List */}
       <div className="flex-1 overflow-y-auto">
-        <div className="flex flex-col space-y-4 p-4">
-          {isLoading ? (
-            <div className="flex flex-col items-center justify-center py-8">
-              <div className="w-8 h-8 border-t-2 border-b-2 border-blue-500 rounded-full animate-spin mb-2"></div>
-              <p className="text-gray-600">Loading drone logs...</p>
-            </div>
-          ) : droneLogs && droneLogs.length > 0 ? (
-            droneLogs.map((instance) => (
-              <InstanceCard key={instance.timestamp} selectedLog={instance} />
-            ))
-          ) : (
-            <div className="text-center py-8 text-gray-500">
-              No drone logs available
-            </div>
-          )}
+        <div className="p-4">
+          <div className="flex gap-2 mb-4">
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md"
+            >
+              <option value="all">All Logs</option>
+              <option value="detected">Detected First</option>
+              <option value="undetected">Undetected First</option>
+            </select>
+            <button
+              onClick={() => setDroneLogs([])}
+              className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 flex-shrink-0"
+            >
+              Clear
+            </button>
+          </div>
+
+          <div className="flex flex-col space-y-4">
+            {isLoading ? (
+              <div className="flex flex-col items-center justify-center py-8">
+                <div className="w-8 h-8 border-t-2 border-b-2 border-blue-500 rounded-full animate-spin mb-2"></div>
+                <p className="text-gray-600">Loading drone logs...</p>
+              </div>
+            ) : droneLogs && droneLogs.length > 0 ? (
+              sortedDroneLogs.map((instance) => (
+                <InstanceCard key={instance.timestamp} selectedLog={instance} />
+              ))
+            ) : (
+              <div className="text-center py-8 text-gray-500">
+                No drone logs available
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

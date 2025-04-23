@@ -6,11 +6,14 @@ export default function InstanceCard({ selectedLog }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const timestamp = selectedLog.timestamp;
   const date = new Date(timestamp);
+  const isHumanDetected = selectedLog.score > 85;
 
   return (
     <div>
       <div
-        className="bg-white p-4 rounded-lg shadow-md cursor-pointer hover:bg-gray-200 transition text-black"
+        className={`p-4 rounded-lg shadow-md cursor-pointer transition text-black ${
+          isHumanDetected ? 'bg-red-100 hover:bg-red-200' : 'bg-white hover:bg-gray-200'
+        }`}
         onClick={() => setIsModalOpen(true)}
       >
         <h2>
