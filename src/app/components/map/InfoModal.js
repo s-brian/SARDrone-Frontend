@@ -20,7 +20,6 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
     if (!imageRef.current) return;
 
     const { width, height } = imageRef.current;
-    setImageDimensions({ width, height });
 
     let parsed = [];
 
@@ -36,7 +35,6 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
         );
       }
 
-      // Process bounding boxes according to Gemini specifications
       const scaledBoxes = parsed
         .filter(
           (box) =>
@@ -45,13 +43,11 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
             box.every((n) => typeof n === "number" && !isNaN(n))
         )
         .map(([y_min, x_min, y_max, x_max]) => {
-          // Step 1: Divide each coordinate by 1000 (Gemini normalization)
           const normalizedY_min = y_min / 1000;
           const normalizedX_min = x_min / 1000;
           const normalizedY_max = y_max / 1000;
           const normalizedX_max = x_max / 1000;
-          
-          // Step 2 & 3: Convert to pixel coordinates
+
           return {
             left: normalizedX_min * width,
             top: normalizedY_min * height,
@@ -60,7 +56,7 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
           };
         });
 
-      setBoxes(percentageBoxes);
+      setBoxes(scaledBoxes);
     } catch (e) {
       console.error("Error parsing bounding boxes:", e);
     }
