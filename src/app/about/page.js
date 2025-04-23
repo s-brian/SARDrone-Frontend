@@ -19,7 +19,7 @@ export default function About() {
           role: "Front-End Lead",
           image: "/brian.JPG",
           bio: "Computer Science (3rd)",
-          quote: "test"
+          quote: "\"bev!\""
         },
         {
           name: "Aishni Balaji",
@@ -33,6 +33,7 @@ export default function About() {
           role: "Team Member",
           image: "/mercy.JPG",
           bio: "Data Science (3rd)",
+          quote: "\"V18.\""
         },
       ],
     },
@@ -69,7 +70,7 @@ export default function About() {
           role: "Team Member",
           image: "/marvin.JPG",
           bio: "Computer Science (2nd)",
-          quote: "\"idk\""
+          quote: "\"let's get a bev?\""
         },
         {
           name: "Jomi Angelina Arockiasamy",
@@ -92,26 +93,28 @@ export default function About() {
           role: "Electrical Lead",
           image: "/erik.JPG",
           bio: "Electrical Engineering (2nd)",
+          quote: "\"itsy bitsy spider\""
         },
         {
           name: "MJ Dilig",
           role: "Electrical Lead",
           image: "/mj.JPG",
           bio: "Computer Engineering (3rd)",
-          quote: ""
+          quote: "\"order in the court\""
         },
         {
           name: "Jaden Phan",
           role: "Team Member",
           image: "/jaden.JPG",
           bio: "Electrical Engineering (2nd)",
-          quote: "\"hard by day, harder by night\""
+          quote: "\"work hard by day, work harder by night\""
         },
         {
           name: "Victor Tran",
           role: "Team Member",
           image: "/victor.JPG",
           bio: "Electrical Engineering (1st)",
+          quote: "\"black friday\""
         },
         {
           name: "Darrius Robertson",
@@ -134,7 +137,7 @@ export default function About() {
           role: "CAD Lead",
           image: "/vivek.JPG",
           bio: "Engineering Technology: Manufacturing Systems (2nd)",
-          quote: "D1 Savers Swiper"
+          quote: "\"D1 Savers Swiper\""
         },
         {
           name: "Kayla Nguyen",
@@ -169,7 +172,7 @@ export default function About() {
           role: "Team Member",
           image: "/yenyi.JPG",
           bio: "Aerospace Engineering (3rd)",
-          quote: "Future Boeing Employee 💥"
+          quote: "\"Future Boeing Employee\""
         },
       ],
     },

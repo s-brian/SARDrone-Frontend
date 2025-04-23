@@ -10,10 +10,6 @@ import { useRef, useState } from "react";
 
 export default function LogDetailsModal({ open, onOpenChange, log }) {
   const imageRef = useRef(null);
-  const [imageDimensions, setImageDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
   const [boxes, setBoxes] = useState([]);
 
   if (!log) return null;
@@ -22,12 +18,6 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
 
   const handleImageLoad = () => {
     if (!imageRef.current) return;
-
-    const { width, height } = imageRef.current;
-    setImageDimensions({ width, height });
-
-    const scaleX = width / 1000;
-    const scaleY = height / 1000;
 
     let parsed = [];
 
@@ -43,7 +33,7 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
         );
       }
 
-      const scaledBoxes = parsed
+      const percentageBoxes = parsed
         .filter(
           (box) =>
             Array.isArray(box) &&
@@ -51,13 +41,13 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
             box.every((n) => typeof n === "number" && !isNaN(n))
         )
         .map(([x1, y1, x2, y2]) => ({
-          left: x1 * scaleX,
-          top: y1 * scaleY,
-          width: (x2 - x1) * scaleX,
-          height: (y2 - y1) * scaleY,
+          left: `${(x1 / 1000) * 100}%`,
+          top: `${(y1 / 1000) * 100}%`,
+          width: `${((x2 - x1) / 1000) * 100}%`,
+          height: `${((y2 - y1) / 1000) * 100}%`,
         }));
 
-      setBoxes(scaledBoxes);
+      setBoxes(percentageBoxes);
     } catch (e) {
       console.error("Error parsing bounding boxes:", e);
     }
@@ -84,17 +74,17 @@ export default function LogDetailsModal({ open, onOpenChange, log }) {
                     className="w-full max-h-[50vh] object-contain"
                     onLoad={handleImageLoad}
                   />
-                  {/* Only render boxes if Gemini detected a human */}
+                  {/* Bounding boxes using percentages */}
                   {log.status &&
                     boxes.map((box, index) => (
                       <div
                         key={index}
                         className="absolute border-2 border-red-500 rounded-sm pointer-events-none"
                         style={{
-                          left: `${box.left}px`,
-                          top: `${box.top}px`,
-                          width: `${box.width}px`,
-                          height: `${box.height}px`,
+                          left: box.left,
+                          top: box.top,
+                          width: box.width,
+                          height: box.height,
                           boxShadow: "0 0 0 1px rgba(0,0,0,0.3)",
                         }}
                       />
