@@ -12,26 +12,29 @@ const images = [
 ];
 
 const ImageCarousel = ({ reverse = false }) => {
-  const animationX = reverse ? ["-100%", "0%"] : ["0%", "-100%"];
+  const animationX = reverse ? ["0%", "-100%"] : ["-100%", "0%"];
 
   return (
-    <div className="overflow-hidden w-full py-10 mb-0 mt-0 bg-white">
+    <div className="overflow-hidden w-full py-10 bg-white">
       <motion.div
-        className="flex gap-6"
+        className="flex gap-6 w-max"
         animate={{ x: animationX }}
         transition={{
           ease: "linear",
-          duration: 20,
+          duration: 30,
           repeat: Infinity,
         }}
+        style={{
+          display: "flex",
+        }}
       >
-        {/* Top/Bottom Carousel*/}
-        {images.concat(images).map((src, index) => (
+        {/* Duplicate image set for seamless infinite scroll */}
+        {[...images, ...images].map((src, index) => (
           <img
             key={index}
             src={src}
             alt={`carousel-${index}`}
-            className="h-32 w-auto rounded-xl shadow-md"
+            className="h-32 w-auto rounded-xl shadow-md flex-shrink-0"
           />
         ))}
       </motion.div>
