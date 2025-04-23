@@ -1,33 +1,36 @@
+"use client";
 import TeamSection from "../components/TeamSection";
-import HeroSection from "../components/TitleText";
+import ImageCarousel from "../components/TitleCarousel";
+import HeroSection from "../components/AboutTitleText";
 
 export default function About() {
   // Team data
+  const year = 2025
   const teams = [
     {
       id: "frontend",
       name: "Front-End Team",
       description:
-        "Our creative visionaries who transform concepts into stunning visual experiences. They blend aesthetics with functionality to create designs that captivate and engage.",
+        "The Front-End Team brings concepts to life through sleek design and interactive user interfaces. With a focus on innovation, they ensure each experience is visually stunning and functionally flawless.",
       image: "/frontend.jpg",
       members: [
         {
           name: "Brian Shih",
           role: "Front-End Lead",
           image: "/brian.JPG",
-          bio: "10+ years of experience in UX/UI design with a focus on user-centered approaches.",
+          bio: "Third year Computer Science major",
         },
         {
           name: "Aishni Balaji",
           role: "Team Member",
           image: "/aishni.JPG",
-          bio: "Specializes in brand identity and visual storytelling across digital platforms.",
+          bio: "Third year Computer Science major",
         },
         {
           name: "Mercy Kim",
           role: "Team Member",
           image: "/mercy.JPG",
-          bio: "Creates engaging animations and interactive elements that bring designs to life.",
+          bio: "Third year Data Science major",
         },
       ],
     },
@@ -35,38 +38,38 @@ export default function About() {
       id: "backend",
       name: "Back-End Team",
       description:
-        "Our technical experts who build robust, scalable solutions using cutting-edge technologies. They turn designs into functional, high-performance digital products.",
+        "Our Back-End Team builds the architecture that drives our platform, specializing in creating secure, reliable, and scalable systems. They work behind the scenes to ensure that the user experience is fast, efficient, and seamless",
       image: "/backend.jpg",
       members: [
         {
           name: "Kevin Tsoi",
           role: "Back-End Lead",
           image: "/kevin.JPG",
-          bio: "Full-stack developer with expertise in React, Node.js, and cloud architecture.",
+          bio: "Second year Computer Science major",
         },
         {
           name: "Kyle Chu",
           role: "Team Member",
           image: "/kyle.JPG",
-          bio: "Specializes in creating responsive, accessible user interfaces with modern frameworks.",
+          bio: "Third year Computer Science major",
         },
         {
           name: "Rachel Tran",
           role: "Team Member",
           image: "/rachel.JPG",
-          bio: "Builds secure, efficient APIs and database solutions for complex applications.",
+          bio: "First year Software Engineering major",
         },
         {
           name: "Marvin Zhai",
           role: "Team Member",
           image: "/marvin.JPG",
-          bio: "Specializes in creating responsive, accessible user interfaces with modern frameworks.",
+          bio: "Second year Computer Science major",
         },
         {
           name: "Jomi Angelina Arockiasamy",
           role: "Team Member",
           image: "/jomi.JPG",
-          bio: "Specializes in creating responsive, accessible user interfaces with modern frameworks.",
+          bio: "First year Data Science major",
         },
       ],
     },
@@ -74,38 +77,38 @@ export default function About() {
       id: "electrical",
       name: "Electrical Team",
       description:
-        "Our strategic thinkers who align digital solutions with business objectives. They analyze market trends and user needs to guide project direction.",
+        "The Electrical Team is at the core of our technological advancements, developing and maintaining the electrical systems that make our projects come to life and ensure our systems are both efficient and sustainable.",
       image: "/electrical.jpg",
       members: [
         {
           name: "Erik Cheng",
           role: "Electrical Lead",
           image: "/erik.JPG",
-          bio: "Develops comprehensive digital strategies that drive business growth and user engagement.",
+          bio: "Second year Electrical Engineering major",
         },
         {
           name: "MJ Dilig",
           role: "Electrical Lead",
           image: "/mj.JPG",
-          bio: "Conducts user research to uncover insights that inform product development decisions.",
+          bio: "Third year Computer Engineering major",
         },
         {
           name: "Jaden Phan",
           role: "Team Member",
           image: "/jaden.JPG",
-          bio: "Translates complex data into actionable insights to optimize digital performance.",
+          bio: "Second year Electrical Engineering major",
         },
         {
           name: "Victor Tran",
           role: "Team Member",
           image: "/victor.JPG",
-          bio: "Translates complex data into actionable insights to optimize digital performance.",
+          bio: "First year Electrical Engineering major",
         },
         {
           name: "Darrius Robertson",
           role: "Team Member",
           image: "/darrius.JPG",
-          bio: "Translates complex data into actionable insights to optimize digital performance.",
+          bio: "Second year Undeclared major",
         },
       ],
     },
@@ -113,44 +116,44 @@ export default function About() {
       id: "cad",
       name: "CAD Team",
       description:
-        "Our marketing specialists who amplify brand presence and drive user acquisition. They craft compelling narratives that resonate with target audiences.",
+        "The CAD Team excels at taking complex designs and transforming them into comprehensive technical drawings and 3D models. With a focus on precision, they ensure every detail is accounted for, helping to turn concepts into viable products ready for development and production.",
       image: "/cad.jpg",
       members: [
         {
           name: "Vivek Bhakta",
           role: "CAD Lead",
           image: "/vivek.JPG",
-          bio: "Creates integrated marketing campaigns that build brand awareness and drive conversions.",
+          bio: "Second year Engineering Technology: Manufacturing Systems major",
         },
         {
           name: "Kayla Nguyen",
           role: "Team Member",
           image: "/kayla.JPG",
-          bio: "Develops content strategies that engage users and support business objectives.",
+          bio: "First year Biomedical Engineering major",
         },
         {
           name: "Stephannie Jimenez Tejeda",
           role: "Team Member",
           image: "/stephannie.JPG",
-          bio: "Builds community and drives engagement through strategic social media initiatives.",
+          bio: "Second year Aerospace Engineering major",
         },
         {
           name: "Olivia Huerta",
           role: "Team Member",
           image: "/olivia.JPG",
-          bio: "Develops content strategies that engage users and support business objectives.",
+          bio: "Second year Biomedical Engineering major",
         },
         {
           name: "Logan Gee",
           role: "Team Member",
           image: "/logan.JPG",
-          bio: "Builds community and drives engagement through strategic social media initiatives.",
+          bio: "First year Mechanical Engineering major",
         },
         {
           name: "Yenyi Chen",
           role: "Team Member",
           image: "/yenyi.JPG",
-          bio: "Builds community and drives engagement through strategic social media initiatives.",
+          bio: "Third year Aerospace Engineering major",
         },
       ],
     },
@@ -159,14 +162,21 @@ export default function About() {
   return (
     <>
       <main className="min-h-screen bg-white">
+        {/* Top Carousel (reverse direction) */}
+        <ImageCarousel reverse={true} />
+
         {/* Hero Section */}
         <HeroSection />
 
+       {/* Glowing Border around title */}
+       
+        
         {/* Team Sections */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          {/* Header Section */}
+          
+          {/* Header Section & Image Carousel*/}
           <div className="text-center mb-20">
-            
+          <ImageCarousel />
           </div>
 
           {/* Rendering Team Sections */}
@@ -180,12 +190,10 @@ export default function About() {
       <footer className="w-full py-4 px-6 border-t border-gray-800">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            &copy; {new Date().getFullYear()} MERIT+ Drone Systems. All rights reserved.
+            &copy; MERIT+ Drone Systems. All rights reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-red-500 transition-colors">Privacy Policy</a>
-            <a href="#" className="text-gray-400 hover:text-red-500 transition-colors">Terms of Service</a>
-            <a href="#" className="text-gray-400 hover:text-red-500 transition-colors">Support</a>
+            <a href="mailto:pnmspring2025@gmail.com" className="text-gray-400 hover:text-red-500 transition-colors">Support</a>
           </div>
         </div>
       </footer>
