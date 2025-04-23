@@ -25,7 +25,7 @@ const ImageCarousel = ({ reverse = false }) => {
           repeat: Infinity,
         }}
       >
-        {/* Repeat the image set twice for seamless looping */}
+        {/* Top/Bottom Carousel*/}
         {images.concat(images).map((src, index) => (
           <img
             key={index}

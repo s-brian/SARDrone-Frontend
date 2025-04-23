@@ -6,6 +6,7 @@ import HeroSection from "./components/HomeTitleText";
 import { Footer } from "./components/Footer";
 
 
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-white overflow-hidden">
@@ -33,12 +34,12 @@ export default function Home() {
         <AnimatedText
           title="Key Features"
           description="Our drone system is equipped with a high-resolution camera capable of capturing clear images. It supports autonomous flight, allowing it to navigate pre-set routes without constant manual control, which is especially useful for covering areas that are hard to reach on foot. Additionally, the drone integrates AI-powered image analysis and detection capabilities, enabling it to automatically identify signs of human presence in real time—helping to streamline the search process and assist rescue teams in focusing their efforts more effectively."
-          imageUrl="/drone.jpg"
+          imageUrl="/drone.JPG"
           imageAlt="Drone illustration"
           imagePosition="right"
         />
       </div>
-
+      
       <Footer></Footer>
     </main>
   );
