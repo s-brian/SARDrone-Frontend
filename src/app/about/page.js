@@ -18,19 +18,21 @@ export default function About() {
           name: "Brian Shih",
           role: "Front-End Lead",
           image: "/brian.JPG",
-          bio: "Third year Computer Science major",
+          bio: "Computer Science (3rd)",
+          quote: "test"
         },
         {
           name: "Aishni Balaji",
           role: "Team Member",
           image: "/aishni.JPG",
-          bio: "Third year Computer Science major",
+          bio: "Computer Science (3rd)",
+          quote: "\"i'll get back to you\" (she never did)"
         },
         {
           name: "Mercy Kim",
           role: "Team Member",
           image: "/mercy.JPG",
-          bio: "Third year Data Science major",
+          bio: "Data Science (3rd)",
         },
       ],
     },
@@ -45,31 +47,36 @@ export default function About() {
           name: "Kevin Tsoi",
           role: "Back-End Lead",
           image: "/kevin.JPG",
-          bio: "Second year Computer Science major",
+          bio: "Computer Science (2nd)",
+          quote: "\"what are other people doing?\""
         },
         {
           name: "Kyle Chu",
           role: "Team Member",
           image: "/kyle.JPG",
-          bio: "Third year Computer Science major",
+          bio: "Software Engineering (3rd)",
+          quote: "\"mu class #1\""
         },
         {
           name: "Rachel Tran",
           role: "Team Member",
           image: "/rachel.JPG",
-          bio: "First year Software Engineering major",
+          bio: "Software Engineering (1st)",
+          quote: "👅"
         },
         {
           name: "Marvin Zhai",
           role: "Team Member",
           image: "/marvin.JPG",
-          bio: "Second year Computer Science major",
+          bio: "Computer Science (2nd)",
+          quote: "\"idk\""
         },
         {
           name: "Jomi Angelina Arockiasamy",
           role: "Team Member",
           image: "/jomi.JPG",
-          bio: "First year Data Science major",
+          bio: "Data Science (1st)",
+          quote: "\"fundraising became my entire life\""
         },
       ],
     },
@@ -84,31 +91,34 @@ export default function About() {
           name: "Erik Cheng",
           role: "Electrical Lead",
           image: "/erik.JPG",
-          bio: "Second year Electrical Engineering major",
+          bio: "Electrical Engineering (2nd)",
         },
         {
           name: "MJ Dilig",
           role: "Electrical Lead",
           image: "/mj.JPG",
-          bio: "Third year Computer Engineering major",
+          bio: "Computer Engineering (3rd)",
+          quote: ""
         },
         {
           name: "Jaden Phan",
           role: "Team Member",
           image: "/jaden.JPG",
-          bio: "Second year Electrical Engineering major",
+          bio: "Electrical Engineering (2nd)",
+          quote: "\"hard by day, harder by night\""
         },
         {
           name: "Victor Tran",
           role: "Team Member",
           image: "/victor.JPG",
-          bio: "First year Electrical Engineering major",
+          bio: "Electrical Engineering (1st)",
         },
         {
           name: "Darrius Robertson",
           role: "Team Member",
           image: "/darrius.JPG",
-          bio: "Second year Undeclared major",
+          bio: "Engineering Technology: Computer System Network Management (2nd)",
+          quote: "\"Professional Handstand Man\""
         },
       ],
     },
@@ -123,37 +133,43 @@ export default function About() {
           name: "Vivek Bhakta",
           role: "CAD Lead",
           image: "/vivek.JPG",
-          bio: "Second year Engineering Technology: Manufacturing Systems major",
+          bio: "Engineering Technology: Manufacturing Systems (2nd)",
+          quote: "D1 Savers Swiper"
         },
         {
           name: "Kayla Nguyen",
           role: "Team Member",
           image: "/kayla.JPG",
-          bio: "First year Biomedical Engineering major",
+          bio: "Biomedical Engineering (1st)",
+          quote: "\"i drive a BMW :)\""
         },
         {
           name: "Stephannie Jimenez Tejeda",
           role: "Team Member",
           image: "/stephannie.JPG",
-          bio: "Second year Aerospace Engineering major",
+          bio: "Aerospace Engineering (2nd)",
+          quote: "\"contact me for food deliveries\" (works for uber eats)"
         },
         {
           name: "Olivia Huerta",
           role: "Team Member",
           image: "/olivia.JPG",
-          bio: "Second year Biomedical Engineering major",
+          bio: "Biomedical Engineering (2nd)",
+          quote: "\"uhh ummm\""
         },
         {
           name: "Logan Gee",
           role: "Team Member",
           image: "/logan.JPG",
-          bio: "First year Mechanical Engineering major",
+          bio: "Mechanical Engineering (1st)",
+          quote: "\"idk bruh\""
         },
         {
           name: "Yenyi Chen",
           role: "Team Member",
           image: "/yenyi.JPG",
-          bio: "Third year Aerospace Engineering major",
+          bio: "Aerospace Engineering (3rd)",
+          quote: "Future Boeing Employee 💥"
         },
       ],
     },

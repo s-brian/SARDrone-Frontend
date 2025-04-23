@@ -70,6 +70,8 @@ export default function TeamMemberCarousel({ members }) {
               <h3 className="text-2xl font-bold text-gray-900 mb-1">{currentMember.name}</h3>
               <p className="text-red-600 font-medium mb-4">{currentMember.role}</p>
               <p className="text-gray-600">{currentMember.bio}</p>
+              <p className="text-gray-600">{currentMember.quote}</p>
+
             </div>
           </motion.div>
         </AnimatePresence>
