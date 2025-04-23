@@ -162,7 +162,7 @@ export default function About() {
   return (
     <>
       <main className="min-h-screen bg-white">
-        {/* Top Carousel (reverse direction) */}
+        {/* Top Carousel Left To Right */}
         <ImageCarousel reverse={true} />
 
         {/* Hero Section */}
@@ -190,7 +190,7 @@ export default function About() {
       <footer className="w-full py-4 px-6 border-t border-gray-800">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            &copy; MERIT+ Drone Systems. All rights reserved.
+            &copy; 2025 MERIT+ Drone Systems. All rights reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <a href="mailto:pnmspring2025@gmail.com" className="text-gray-400 hover:text-red-500 transition-colors">Support</a>
