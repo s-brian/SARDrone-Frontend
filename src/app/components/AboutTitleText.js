@@ -28,7 +28,7 @@ export default function HeroSection() {
   const words = heading.split(" ");
 
   return (
-    <div className="text-center mb-10 pt-36">
+    <div className="text-center mb-2 -mt-8 pt-36">
       <motion.h1
         className="text-5xl md:text-6xl font-bold mb-6 tracking-tight text-gray-900 inline-flex flex-wrap justify-center gap-x-2"
         variants={container}
@@ -52,10 +52,10 @@ export default function HeroSection() {
         transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
         className="max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed"
       >
-        We are a diverse group of passionate individuals who combine expertise,
-        creativity, and dedication to deliver exceptional digital experiences
-        that exceed expectations.
+        Spring 2025 Theta Tau Potential New Member Class at San Jose State University
       </motion.p>
+
+      
     </div>
   );
 }
