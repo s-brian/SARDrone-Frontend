@@ -14,7 +14,7 @@ export default function About() {
       name: "Front-End Team",
       description:
         "The Front-End Team brings concepts to life through sleek design and interactive user interfaces. With a focus on innovation, they ensure each experience is visually stunning and functionally flawless.",
-      image: "/frontend.jpg",
+      image: "/updatedfrontend.jpg",
       members: [
         {
           name: "Brian Shih",
@@ -22,13 +22,6 @@ export default function About() {
           image: "/brian.JPG",
           bio: "Computer Science (3rd)",
           quote: "\"bev!\""
-        },
-        {
-          name: "Aishni Balaji",
-          role: "Team Member",
-          image: "/aishni.JPG",
-          bio: "Computer Science (3rd)",
-          quote: "\"i'll get back to you\" (she never did)"
         },
         {
           name: "Mercy Kim",
@@ -132,7 +125,7 @@ export default function About() {
       name: "CAD Team",
       description:
         "The CAD Team excels at taking complex designs and transforming them into comprehensive technical drawings and 3D models. With a focus on precision, they ensure every detail is accounted for, helping to turn concepts into viable products ready for development and production.",
-      image: "/cad.jpg",
+      image: "/updatedcad2.jpg",
       members: [
         {
           name: "Vivek Bhakta",
