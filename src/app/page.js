@@ -16,7 +16,7 @@ export default function Home() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <AnimatedText
           title="Our Mission"
-          description="Our mission is to design and deliver a low-cost, easy-to-operate drone system specifically tailored for volunteer-based and underfunded search and rescue operations. In many remote or rural regions, professional-grade equipment is either unavailable or prohibitively expensive, leaving teams to rely on outdated or inefficient methods. By prioritizing affordability, portability, and minimal training requirements, our solution aims to bridge the technology gap and empower local responders with a tool they can depend on, even in areas with limited infrastructure or support."
+          description="Our mission is to design and deliver a low-cost, easy-to-operate drone system specifically tailored for volunteer-based and underfunded search and rescue operations. In many remote or rural regions, professional-grade equipment is either unavailable or very expensive and it leaves teams to rely on outdated or inefficient methods. By prioritizing things such as affordability and minimal training requirements, our solution can bridge the technology gap and give local responders a tool they can depend on, even in areas with limited infrastructure and support."
           imageUrl="/group.jpg"
           imageAlt="Drone illustration"
           imagePosition="right"
@@ -24,16 +24,16 @@ export default function Home() {
 
         <AnimatedText
           title="The Problem"
-          description="In many parts of the world, search and rescue operations are carried out by small groups of dedicated volunteers who often lack access to proper funding, equipment, and advanced technology. These teams work under difficult conditions—navigating vast forests, rugged mountains, and remote terrain—using limited tools such as paper maps, radios, and word-of-mouth coordination. As a result, locating missing individuals can take anywhere from several hours to multiple days, significantly reducing the chances of a successful rescue. The lack of accessible and affordable tools not only delays operations but also puts both the rescuers and those in need of help at greater risk."
-          imageUrl="/mountain.jpg"
+          description="In many parts of the world, search and rescue operations are carried out by small groups of volunteers who often lack access to proper funding, equipment, and advanced technology. These teams work under difficult conditions with limited tools such as paper maps, radios, and word-of-mouth as communication. As a result, locating missing individuals can take anywhere from several hours to multiple days which significantly reduces the chance of a successful rescue. The lack of accessible and affordable tools not only delays operations but also puts both the rescuers and those in need of help at greater risk."
+          imageUrl="/forest.jpg"
           imageAlt="Drone illustration"
           imagePosition="left"
         />
 
         <AnimatedText
           title="Key Features"
-          description="Our drone system is equipped with a high-resolution camera capable of capturing clear images. It supports autonomous flight, allowing it to navigate pre-set routes without constant manual control, which is especially useful for covering areas that are hard to reach on foot. Additionally, the drone integrates AI-powered image analysis and detection capabilities, enabling it to automatically identify signs of human presence in real time—helping to streamline the search process and assist rescue teams in focusing their efforts more effectively."
-          imageUrl="/drone.JPG"
+          description="Our drone system has a high-resolution camera that is capable of capturing clear images. It supports autonomous flight, allowing it to navigate pre-set routes without a constant manual control. This is especially useful for covering areas that are hard to reach on foot. Additionally, the drone integrates AI-powered image analysis and detection capabilities, enabling it to identify signs of human presence in real time."
+          imageUrl="/dronefinal.JPG"
           imageAlt="Drone illustration"
           imagePosition="right"
         />
