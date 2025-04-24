@@ -3,6 +3,7 @@ import TeamSection from "../components/TeamSection";
 import ImageCarousel from "../components/TitleCarousel";
 import HeroSection from "../components/AboutTitleText";
 import { Footer } from "../components/Footer";
+import DroneRoutingArrow from "../components/DroneRoutingArrow"
 
 export default function About() {
   // Team data
@@ -204,6 +205,10 @@ export default function About() {
           ))}
         </div>
       </main>
+
+      <div className="flex flex-col items-center justify-center py-16">
+        <DroneRoutingArrow />
+      </div>
 
       {/* Footer Section */}
       <Footer></Footer>
