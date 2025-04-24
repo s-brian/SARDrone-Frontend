@@ -1,15 +1,15 @@
 "use client";
 import InfoLog from "../../components/map/InfoLog";
 import DroneMap from "../../components/map/DroneMap";
-import { motion } from "framer-motion";
-import Navbar from "../../components/Navbar";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Map() {
   const params = useParams();
   const [droneId, setDroneId] = useState(null);
   const [droneLogs, setDroneLogs] = useState([]);
+  const router = useRouter()
 
   const [selectedLog, setSelectedLog] = useState(null);
 
@@ -18,7 +18,11 @@ export default function Map() {
     if (params && params.drone_id) {
       setDroneId(params.drone_id);
     }
-  }, [params]);
+    const token = localStorage.getItem("authToken")
+    if (!token) {
+      router.push("/login") // redirect to login if not authenticated
+    }
+  }, [params, router]);
 
   return (
     <div className="h-[calc(100vh-73px)] overflow-hidden">
